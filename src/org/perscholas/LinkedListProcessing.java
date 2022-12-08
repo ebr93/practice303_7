@@ -80,5 +80,12 @@ class LinkedListExample {
 		// Custom sorted
 		System.out.println(linkedList);
 
+		/*
+		 * Output: 
+		 * [A, C, B, D] 
+		 * [A, B, C, D] 
+		 * [D, C, B, A]
+		 * 
+		 */
 	}
 }
