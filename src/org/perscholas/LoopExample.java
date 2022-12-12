@@ -7,31 +7,22 @@ public class LoopExample {
 
 	public static void main(String[] args) {
 		// Question 1 Try-catch
-		// divide();
+		divide();
 
 		// Question 2
 		TypingPractice type = new TypingPractice();
-		boolean loopAgain = true;
-		while (loopAgain) {
-			try {
-				type.typeABC();
-				loopAgain = false;
-			} catch (myException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		type.typeABC();
 	}
 
-	/* Question 1
-	 * Create a static void method named divide that has no parameters. Let the user
-	 * input two integers and print the value of dividing the two integers. Use a
-	 * try-catch block to catch an ArithmeticException and InputMismatchException.
-	 * If you have an ArithmeticException print “Please do not use zero”. If you
-	 * have an InputMismatch print “Please only use integers. Use a while loop and a
-	 * boolean to make sure if the user inputs an ArithmeticException or
-	 * InputMismatchException the program does not terminate but lets the user try
-	 * again.
+	/*
+	 * Question 1 Create a static void method named divide that has no parameters.
+	 * Let the user input two integers and print the value of dividing the two
+	 * integers. Use a try-catch block to catch an ArithmeticException and
+	 * InputMismatchException. If you have an ArithmeticException print “Please do
+	 * not use zero”. If you have an InputMismatch print “Please only use integers.
+	 * Use a while loop and a boolean to make sure if the user inputs an
+	 * ArithmeticException or InputMismatchException the program does not terminate
+	 * but lets the user try again.
 	 */
 
 	public static void divide() {
@@ -55,8 +46,8 @@ public class LoopExample {
 
 }
 
-/* Question 2
- * Create a class called MyException that extends Exception. Create a
+/*
+ * Question 2 Create a class called MyException that extends Exception. Create a
  * constructor but from the super class that will let you print out a message.
  * Create a class called TypingPractice. Create a method called typeABC. Let the
  * user type a String and if the String does not match “abc” throw new
@@ -65,20 +56,32 @@ public class LoopExample {
  * after the exception is called.
  */
 
-class myException extends Exception {
-	public myException(String message) {
+class MyException extends Exception {
+	public MyException() {
+		
+	}
+	
+	public MyException(String message) {
 		super(message);
 	}
 }
 
 class TypingPractice {
 
-	public void typeABC() throws myException {
+	public void typeABC() {
 		String string = "";
+		boolean loopAgain = true;
 		Scanner sc = new Scanner(System.in);
-		string = sc.nextLine();
-		if (!(string.equals("abc"))) {
-			throw new myException("incorrect input");
+		while (loopAgain) {
+			try {
+				string = sc.nextLine();
+				if (!(string.equals("abc"))) {
+					throw new MyException("incorrect input");
+				}
+				loopAgain = false;
+			} catch (MyException me) {
+				me.printStackTrace();
+			}
 		}
 		sc.close();
 	}
