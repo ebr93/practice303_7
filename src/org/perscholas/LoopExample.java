@@ -37,7 +37,7 @@ public class LoopExample {
 			} catch (InputMismatchException ime) {
 				System.out.println("Please only use integers");
 				// continue;
-			} catch (ArithmeticException e) {
+			} catch (ArithmeticException ae) {
 				System.out.println("Please do not use zero");
 				// continue;
 			}
@@ -58,9 +58,9 @@ public class LoopExample {
 
 class MyException extends Exception {
 	public MyException() {
-		
+
 	}
-	
+
 	public MyException(String message) {
 		super(message);
 	}
@@ -69,20 +69,22 @@ class MyException extends Exception {
 class TypingPractice {
 
 	public void typeABC() {
-		String string = "";
+		String string;
 		boolean loopAgain = true;
-		Scanner sc = new Scanner(System.in);
+
 		while (loopAgain) {
-			try {
-				string = sc.nextLine();
-				if (!(string.equals("abc"))) {
+			Scanner sc = new Scanner(System.in);
+			string = sc.nextLine();
+			if (!(string.equals("abc"))) {
+				try {
 					throw new MyException("incorrect input");
+				} catch (MyException me) {
+					System.out.println(me.getMessage());
 				}
+			} else {
 				loopAgain = false;
-			} catch (MyException me) {
-				me.printStackTrace();
+				sc.close();
 			}
 		}
-		sc.close();
 	}
 }
